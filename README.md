@@ -1,36 +1,32 @@
-# React + TypeScript + Vite
+# NEON OVERDRIVE — Three.js 3D Cyber Car Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Three.js + React + TypeScript + Vite で構築した、ブラウザで動作するサイバーパンク調 3D カーゲームです。
 
-Currently, two official plugins are available:
+## 主な機能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Three.js 3D グラフィック**: ネオンハイウェイ、スカイスクレイパー、シンセウェーブ・サン、カスタム 3D スポーツカー、パーティクル演出、3種類のカメラ視点
+- **メニュー & カスタマイズ**: 3つのゲームモード（NEON CITY / CYBER RUSH / ENDLESS CHILL）と 4種類のマシンカラー（背景の 3D 車両へ即時反映）
+- **エンタメギミック**:
+  - **ニトロスマッシュ**: ニトロ発動中は無敵になり、ライバル車を弾き飛ばしてボーナス獲得
+  - **ニアミスボーナス**: 障害物のギリギリ横をすり抜けるとコンボ＆ニトロゲージ回復
+  - **ネオンジャンプ台**: スロープで豪快に空中ジャンプし、前方の車両を飛び越える
+  - **エネルギーシールド**: 1回分の衝突を無効化するホログラムバリア
+- **Web Audio API シンセウェーブ BGM & SE**: 外部音声ファイル不要でシンセウェーブ BGM をリアルタイム生成・ループ再生。画面右上のボタンまたは `M` キーでいつでも BGM のオン/オフを切り替え可能
 
-## React Compiler
+## 操作方法
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+| キー | 操作 |
+| --- | --- |
+| `← / →` または `A / D` | 左右ステアリング |
+| `↑ / ↓` または `W / S` | アクセル / ブレーキ |
+| `Space` または `Shift` | ニトロブースト（ゲージ 25% 以上） |
+| `C` | カメラ視点切替（チェイス / ダイナミック / ボンネット） |
+| `P` または `Esc` | ポーズ / 操作説明表示 |
+| `M` | BGM オン / オフ切替 |
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## 開発サーバー起動
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-# gemini-neon-games
