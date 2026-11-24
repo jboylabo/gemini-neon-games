@@ -4,7 +4,7 @@ export type GameModeId = 'neon_city' | 'cyber_rush' | 'endless_chill';
 
 export type CameraMode = 'chase' | 'hood' | 'dynamic';
 
-export type CarColorId = 'cyan' | 'pink' | 'lime' | 'gold';
+export type CarColorId = 'obsidian' | 'pearl' | 'cyan' | 'pink' | 'gold';
 
 export interface GameModeConfig {
   id: GameModeId;
@@ -24,6 +24,7 @@ export interface CarColorConfig {
   primaryHex: number;
   emissiveHex: number;
   cssColor: string;
+  isMatte?: boolean;
 }
 
 export interface FloatingEvent {
@@ -93,30 +94,38 @@ export const GAME_MODES: Record<GameModeId, GameModeConfig> = {
 
 export const CAR_COLORS: CarColorConfig[] = [
   {
+    id: 'obsidian',
+    name: 'G63 Matte Black',
+    primaryHex: 0x1b1e26,
+    emissiveHex: 0x00f5ff,
+    cssColor: '#272c38',
+    isMatte: true,
+  },
+  {
+    id: 'pearl',
+    name: 'Polar White',
+    primaryHex: 0xe8eef7,
+    emissiveHex: 0x38bdf8,
+    cssColor: '#e2e8f0',
+  },
+  {
     id: 'cyan',
     name: 'Cyber Cyan',
-    primaryHex: 0x0ea5e9,
+    primaryHex: 0x0284c7,
     emissiveHex: 0x00f5ff,
     cssColor: '#00f5ff',
   },
   {
     id: 'pink',
     name: 'Plasma Pink',
-    primaryHex: 0xdb2777,
+    primaryHex: 0xbe185d,
     emissiveHex: 0xff2e97,
     cssColor: '#ff2e97',
   },
   {
-    id: 'lime',
-    name: 'Volt Lime',
-    primaryHex: 0x65a30d,
-    emissiveHex: 0xa3ff12,
-    cssColor: '#a3ff12',
-  },
-  {
     id: 'gold',
     name: 'Solar Gold',
-    primaryHex: 0xd97706,
+    primaryHex: 0xb45309,
     emissiveHex: 0xffc800,
     cssColor: '#ffc800',
   },

@@ -61,7 +61,7 @@ export const App: React.FC = () => {
 
   const [hud, setHud] = useState<HudSnapshot>(INITIAL_HUD);
   const [selectedMode, setSelectedMode] = useState<GameModeId>('neon_city');
-  const [selectedColor, setSelectedColor] = useState<CarColorId>('cyan');
+  const [selectedColor, setSelectedColor] = useState<CarColorId>('obsidian');
   const [bgmOn, setBgmOn] = useState<boolean>(true);
   const [sfxOn, setSfxOn] = useState<boolean>(true);
 
