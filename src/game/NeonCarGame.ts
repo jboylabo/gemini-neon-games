@@ -95,7 +95,7 @@ export class NeonCarGame {
   // Game state
   private phase: GamePhase = 'menu';
   private modeId: GameModeId = 'neon_city';
-  private colorId: CarColorId = 'cyan';
+  private colorId: CarColorId = 'obsidian';
   private cameraMode: CameraMode = 'chase';
 
   private playerX = 0;
@@ -106,7 +106,7 @@ export class NeonCarGame {
   private invulnerableTimer = 0;
   private shakeTimer = 0;
   private shakeMagnitude = 0;
-  private menuOrbitAngle = 0;
+  private menuOrbitAngle = Math.PI * 0.82;
 
   private score = 0;
   private highScore = 0;
@@ -200,19 +200,23 @@ export class NeonCarGame {
   }
 
   private setupLighting(): void {
-    const ambient = new THREE.AmbientLight(0x8b5cf6, 0.9);
+    const ambient = new THREE.AmbientLight(0xa5b4fc, 1.15);
     this.scene.add(ambient);
 
-    const hemi = new THREE.HemisphereLight(0x38bdf8, 0xff2e97, 0.85);
+    const hemi = new THREE.HemisphereLight(0x7dd3fc, 0xff2e97, 1.0);
     this.scene.add(hemi);
 
-    const dir = new THREE.DirectionalLight(0xffffff, 1.35);
-    dir.position.set(14, 28, 16);
+    const dir = new THREE.DirectionalLight(0xffffff, 1.85);
+    dir.position.set(14, 28, 18);
     this.scene.add(dir);
 
-    const backLight = new THREE.DirectionalLight(0xff2e97, 0.9);
-    backLight.position.set(-10, 12, -30);
-    this.scene.add(backLight);
+    const frontKey = new THREE.DirectionalLight(0xe0f2fe, 1.25);
+    frontKey.position.set(-12, 16, -24);
+    this.scene.add(frontKey);
+
+    const backRim = new THREE.DirectionalLight(0xff4da6, 1.05);
+    backRim.position.set(10, 10, 24);
+    this.scene.add(backRim);
   }
 
   private createRoadTexture(): THREE.CanvasTexture {
@@ -1214,17 +1218,17 @@ export class NeonCarGame {
     let targetFov = 64;
 
     if (this.cameraMode === 'chase') {
-      targetPos.set(this.playerX * 0.72, 4.1 + this.playerY * 0.55, 9.2);
-      lookTarget.set(this.playerX * 0.5, 1.3 + this.playerY * 0.45, -18);
+      targetPos.set(this.playerX * 0.72, 4.45 + this.playerY * 0.55, 9.6);
+      lookTarget.set(this.playerX * 0.5, 1.55 + this.playerY * 0.45, -18);
       targetFov = this.isNitroActive ? 80 : 65 + Math.max(0, this.currentSpeed - 50) * 0.12;
     } else if (this.cameraMode === 'dynamic') {
-      targetPos.set(this.playerX * 0.92 - this.playerVelX * 0.08, 3.5 + this.playerY * 0.65, 8.2);
-      lookTarget.set(this.playerX * 0.7 + this.playerVelX * 0.14, 1.4 + this.playerY * 0.5, -24);
+      targetPos.set(this.playerX * 0.92 - this.playerVelX * 0.08, 3.85 + this.playerY * 0.65, 8.6);
+      lookTarget.set(this.playerX * 0.7 + this.playerVelX * 0.14, 1.6 + this.playerY * 0.5, -24);
       targetFov = this.isNitroActive ? 84 : 68 + Math.max(0, this.currentSpeed - 50) * 0.14;
     } else {
-      // Hood view
-      targetPos.set(this.playerX, 1.42 + this.playerY, -0.45);
-      lookTarget.set(this.playerX + this.playerVelX * 0.06, 1.15 + this.playerY, -35);
+      // Hood view (G-Class high SUV bonnet)
+      targetPos.set(this.playerX, 2.02 + this.playerY, -0.5);
+      lookTarget.set(this.playerX + this.playerVelX * 0.06, 1.6 + this.playerY, -35);
       targetFov = this.isNitroActive ? 88 : 74;
     }
 
